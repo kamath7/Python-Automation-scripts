@@ -1,5 +1,6 @@
 from xml.dom.minidom import Element
 from selenium import webdriver
+import time
 
 def get_driver():
     
@@ -18,6 +19,8 @@ def get_driver():
 def main():
     driver = get_driver()
     element = driver.find_element(by='xpath',value='/html/body/div[1]/div/h1[1]')
-    return element.text
+    time.sleep(2)
+    element2 = driver.find_element(by='xpath', value='/html/body/div[1]/div/h1[2]')
+    return element.text,element2.text.split(':')[1]
 
 print(main())
