@@ -23,7 +23,10 @@ def main():
     driver.find_element(by="id", value="id_username").send_keys("automated") #env in the future
     time.sleep(3)
     driver.find_element(by="id", value="id_password").send_keys("automatedautomated"+ Keys.RETURN)
-    driver.current_url #to stop window from closing
+    driver.find_element(by="xpath",value="/html/body/nav/div/a").click()
+    time.sleep(5)
+    print(driver.current_url)
+    # driver.current_url #to stop window from closing
 
 
 print(main())
