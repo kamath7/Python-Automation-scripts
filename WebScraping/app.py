@@ -16,11 +16,14 @@ def get_driver():
     driver.get('https://automated.pythonanywhere.com/')
     return driver
 
+def cleanText(text):
+    return float(text.split(': ')[1])
+
 def main():
     driver = get_driver()
     element = driver.find_element(by='xpath',value='/html/body/div[1]/div/h1[1]')
     time.sleep(2)
     element2 = driver.find_element(by='xpath', value='/html/body/div[1]/div/h1[2]')
-    return element.text,element2.text.split(':')[1]
+    return element.text,cleanText(element2.text)
 
 print(main())
