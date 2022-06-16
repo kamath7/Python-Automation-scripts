@@ -26,4 +26,14 @@ def get_my_news(topic, from_date, to_date, language='en'):
         print(article['title'],' | ', article['description'],'\n')
 
 
+def top_headlines(country):
+    r = requests.get(f'https://newsapi.org/v2/top-headlines?country={country}&apiKey={api_key}')
+    content = r.json()
+    my_articles = content['articles']
+    for article in my_articles:
+        print(article['title'],' | ', article['description'],'\n')
+
+
 get_my_news('Linkin Park','2022-06-01','2022-06-15')
+top_headlines('in')
+top_headlines('au')
