@@ -12,4 +12,6 @@ if not p2.exists():
     with open(p2,'w') as f1:
         f1.write('written through pathlib')
 
-print(p1.name)
+print(p1.name) #filename with extension
+print(p1.stem) #filename only
+print(p1.suffix) #extension
