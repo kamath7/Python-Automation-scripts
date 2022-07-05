@@ -15,5 +15,6 @@ content = '''
 Welcome to the awesome party at my place!
 '''
 
+
 yag = yagmail.SMTP(user=sender, password=pass_word)
 yag.send(to=receiver, subject=subject, contents=content)
