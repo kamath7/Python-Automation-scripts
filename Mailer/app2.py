@@ -3,6 +3,8 @@ import yagmail
 import os
 from dotenv import load_dotenv
 import time
+from datetime import datetime as dt 
+
 
 load_dotenv()
 
@@ -21,9 +23,10 @@ def send_email():
     yag.send(to=receiver, subject=subject, contents=content)
     print("LMAO SPAMMED")
 
-for i in range(0, 5):
-    send_email()
-    time.sleep(10)
+while True: 
 
+    if dt.now().hour == 23 and dt.now().minute == 9:
+        send_email()
+        break
 
 
