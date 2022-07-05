@@ -15,7 +15,7 @@ def send_email(receiver, name):
     content = [f"""\n
                 Hello {name} \n
                     Spamming through Python! Bear with me 
-                """, 'doge.jpg']
+                """, 'meme.mp4']
     yag = yagmail.SMTP(user=sender, password=pass_word)
     yag.send(to=receiver, subject=subject, contents=content)
 
