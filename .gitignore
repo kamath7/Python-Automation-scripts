@@ -1,2 +1,6 @@
 *.exe
 .env
+*.csv
+*.m4
+*.jpg
+*.png
