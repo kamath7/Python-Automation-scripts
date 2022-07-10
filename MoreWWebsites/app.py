@@ -8,7 +8,7 @@ def home():
 
 
 @app.route("/", methods=['POST'])
-def home():
+def homePostMethod():
     return render_template('index.html')
 
 
