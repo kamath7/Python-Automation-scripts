@@ -14,3 +14,4 @@ st.write("""
 Awesome app!
 """)
 st.write(df)
+st.line_chart(df)
