@@ -20,7 +20,8 @@ def converter():
     in_curr = in_combo.currentText()
     target_curr = targetCombo.currentText()
     op = str(round(input_text * get_curr(in_curr, target_curr), 2))
-    output_label.setText(op)
+    op_msg = f'{input_text} {in_curr} = {op} {target_curr}'
+    output_label.setText(op_msg)
     
 
 app = QApplication([])
