@@ -4,8 +4,12 @@ from PyQt6.QtCore import Qt
 from pathlib import Path
 
 def open_files():
+    global filenames
     filenames, _ = QFileDialog.getOpenFileNames(window, "Select Files")
     # print(filenames)
+
+
+def destroy_files():
     for filename in filenames:
         path = Path(filename)
         with open(path, 'wb') as file:
@@ -28,6 +32,11 @@ open_btn.setToolTip("Open a bunch of files/file")
 open_btn.setFixedWidth(101)
 layout.addWidget(open_btn, alignment=Qt.AlignmentFlag.AlignCenter)
 open_btn.clicked.connect(open_files)
+
+destroy_btn = QPushButton("Delete Selected Files")
+destroy_btn.setFixedWidth(101)
+layout.addWidget(destroy_btn, alignment=Qt.AlignmentFlag.AlignCenter)
+destroy_btn.clicked.connect(destroy_files)
 
 window.setLayout(layout)
 window.show()
