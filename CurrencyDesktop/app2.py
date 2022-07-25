@@ -1,0 +1,71 @@
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit, QComboBox, QHBoxLayout
+from PyQt6.QtCore import Qt
+import requests
+from bs4 import BeautifulSoup
+
+
+
+def cleaner_text(text):
+    return float(text.split(" ")[0])
+
+def get_curr(in_currency, out_currency):
+    url = f"https://www.x-rates.com/calculator/?from={in_currency}&to={out_currency}&amount=1"
+    content = requests.get(url).text
+    soup = BeautifulSoup(content, 'html.parser')
+    curr_rate = soup.find('span', class_="ccOutputRslt").get_text()
+    # print(cleaner_text(curr_rate))
+    return cleaner_text(curr_rate)
+
+def converter():
+    input_text = float(text.text())
+    in_curr = in_combo.currentText()
+    target_curr = targetCombo.currentText()
+    op = str(round(input_text * get_curr(in_curr, target_curr), 2))
+    op_msg = f'{input_text} {in_curr} = {op} {target_curr}'
+    output_label.setText(op_msg)
+    
+
+app = QApplication([])
+window = QWidget()
+window.setWindowTitle('Dollar to INR - Currency Converter')
+
+layout = QVBoxLayout()
+
+layout1 = QHBoxLayout()
+layout.addLayout(layout1)
+
+output_label = QLabel('')
+layout.addWidget(output_label)
+
+layout2 = QVBoxLayout()
+layout1.addLayout(layout2)
+
+layout3 = QVBoxLayout()
+layout1.addLayout(layout3)
+
+
+in_combo = QComboBox()
+currencies = ['USD','EUR','INR']
+in_combo.addItems(currencies)
+layout2.addWidget(in_combo)
+
+
+targetCombo = QComboBox()
+targetCombo.addItems(currencies)
+layout2.addWidget(targetCombo)
+
+text = QLineEdit()
+layout3.addWidget(text)
+
+btn = QPushButton("Convert")
+layout3.addWidget(btn, alignment=Qt.AlignmentFlag.AlignBottom)
+
+btn.clicked.connect(converter)
+
+
+output_label = QLabel('')
+layout.addWidget(output_label)
+
+window.setLayout(layout)
+window.show()
+app.exec()
