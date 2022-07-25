@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout
 
-app = QApplication()
+app = QApplication([])
 window = QWidget()
 window.setWindowTitle("Delethor")
 
