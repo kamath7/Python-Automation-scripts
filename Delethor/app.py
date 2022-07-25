@@ -1,4 +1,6 @@
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton
+from PyQt6.QtCore import Qt
+
 
 app = QApplication([])
 window = QWidget()
@@ -11,7 +13,8 @@ layout.addWidget(description)
 
 open_btn = QPushButton("Open Files")
 open_btn.setToolTip("Open a bunch of files/file")
-layout.addWidget(open_btn)
+open_btn.setFixedWidth(101)
+layout.addWidget(open_btn, alignment=Qt.AlignmentFlag.AlignCenter)
 
 
 window.setLayout(layout)
