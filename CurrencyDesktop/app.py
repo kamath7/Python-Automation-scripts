@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QLineEdit, QComboBox
 import requests
 from bs4 import BeautifulSoup
 
@@ -17,7 +17,9 @@ def get_curr(in_currency, out_currency):
 
 def converter():
     input_text = float(text.text())
-    op = str(round(input_text * get_curr('USD','INR'), 2))
+    in_curr = in_combo.currentText()
+    target_curr = targetCombo.currentText()
+    op = str(round(input_text * get_curr(in_curr, target_curr), 2))
     output_label.setText(op)
     
 
@@ -26,6 +28,16 @@ window = QWidget()
 window.setWindowTitle('Dollar to INR - Currency Converter')
 
 layout = QVBoxLayout()
+
+in_combo = QComboBox()
+currencies = ['USD','EUR','INR']
+in_combo.addItems(currencies)
+layout.addWidget(in_combo)
+
+
+targetCombo = QComboBox()
+targetCombo.addItems(currencies)
+layout.addWidget(targetCombo)
 
 text = QLineEdit()
 layout.addWidget(text)
