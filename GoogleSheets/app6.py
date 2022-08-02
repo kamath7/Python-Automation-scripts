@@ -8,7 +8,8 @@ worksheet1 = spreadsheet.worksheet("AwesomeSheet")
 
 exis_col = worksheet1.get_values('B2:B11')
 print(exis_col)
-new_col = [[(round(float(i[0]) ** 2))] for i in exis_col]
-print(new_col)
+# new_col = [[(round(float(i[0]) ** 2))] for i in exis_col]
+oor_col = [[(round(float(i[0]) / 69))] for i in exis_col]
+# print(new_col)
 
-worksheet1.update('B2:B11', new_col)
+worksheet1.update('C1:C11', [['Oor Lalle Values']] + oor_col)
