@@ -6,4 +6,6 @@ spreadsheet = gc.open("Nicesheet")
 
 worksheet1 = spreadsheet.worksheet("AwesomeSheet")
 
-worksheet1.update('B2','299')
+worksheet1.update('B2',299)
+
+worksheet1.update_cell(5,5,99)
