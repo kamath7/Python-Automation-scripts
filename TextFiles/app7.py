@@ -4,10 +4,18 @@ files_dir = Path('files')
 
 merge = ''
 
-for filepath in files_dir.iterdir():
+for index, filepath in enumerate(files_dir.iterdir()):
     with open(filepath, 'r') as file:
-        content = file.read()
-    merge = merge + content + "\n"
+        content = file.readlines()
+        new_cont = content[1:]
+    if index == 0:
+        content = ''.join(content)
+        merge = merge + content + "\n"
+    else:
+        new_cont = ''.join(new_cont)
+        merge = merge + new_cont + '\n'
+
+    
 
 with open("merged.csv","w") as file:
     file.write(merge)
