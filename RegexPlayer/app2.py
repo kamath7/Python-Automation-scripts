@@ -2,9 +2,9 @@ import re
 
 some_text = """
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-a @.com b@b.com c@c.com
+a @.com b@b.com c@c.com lalla@lalle.com mm@m.nl mm@m.in
 """
 
-pattern = re.compile('[^ ]+@[^_ ]+\.[a-z]+')
+pattern = re.compile('[^ ]+@[^_ ]+\.(?:com|in)*')
 matches = pattern.findall(some_text)
 print(matches)
