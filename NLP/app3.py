@@ -25,8 +25,12 @@ tv = TfidfVectorizer(tokenizer=sent_lemmati)
 tf = tv.fit_transform(sentence_tokens)
 
 df = pd.DataFrame(tf.toarray(), columns=tv.get_feature_names())
-print(df)
 
 values = cosine_similarity(tf[-1],tf)
 
-print(values)
+index = values.argsort()[0][-2]
+values_flat = values.flatten()
+coeff = values_flat[-2]
+
+if coeff > 0.3:
+    print(sentence_tokens[index])
