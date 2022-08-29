@@ -26,3 +26,4 @@ while success:
     count += 1
 
 op.release()
+cv2.destroyAllWindows()

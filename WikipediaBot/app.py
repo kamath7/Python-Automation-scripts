@@ -19,21 +19,30 @@ def sent_lemmati(sent):
             # print(token)
             pass
     return sentence_lem
-sentence_tokens = nltk.sent_tokenize(long_sent)
-sentence_tokens.append(question)
-tv = TfidfVectorizer(tokenizer=sent_lemmati)
-tf = tv.fit_transform(sentence_tokens)
 
-df = pd.DataFrame(tf.toarray(), columns=tv.get_feature_names())
+def process(text, question):
+    sentence_tokens = nltk.sent_tokenize(long_sent)
+    sentence_tokens.append(question)
+    tv = TfidfVectorizer(tokenizer=sent_lemmati)
+    tf = tv.fit_transform(sentence_tokens)
 
-values = cosine_similarity(tf[-1],tf)
+    df = pd.DataFrame(tf.toarray(), columns=tv.get_feature_names())
 
-index = values.argsort()[0][-2]
-values_flat = values.flatten()
-coeff = values_flat[-2]
+    values = cosine_similarity(tf[-1],tf)
 
-if coeff > 0.3:
-    print(sentence_tokens[index])
+    index = values.argsort()[0][-2]
+    values_flat = values.flatten()
+    coeff = values_flat[-2]
+
+    if coeff > 0.3:
+        return (sentence_tokens[index])
 
 while True:
-    question = input("What knowledge can I impart on you today?")
+    question = input("What knowledge can I impart on you today? Press N for exiting ")
+    if question  == "N":
+        break
+    op = process(long_sent, question)
+    if op:
+        print(op)
+    else:
+        print("Check your input again")
