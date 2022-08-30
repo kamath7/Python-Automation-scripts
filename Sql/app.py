@@ -18,3 +18,8 @@ print(cursor.fetchall())
 
 cursor.execute("SELECT * FROM 'ips' WHERE asn = 144 AND domain LIKE '%sa'")
 print(cursor.fetchall())
+
+results = cursor.fetchall()
+for row in results:
+    print(row)
+# cursor.fetchall() -> must be executed only once
