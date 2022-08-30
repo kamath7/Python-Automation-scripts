@@ -12,3 +12,6 @@ print(cursor.fetchall())
 
 cursor.execute("SELECT * FROM 'ips' WHERE asn < 300")
 print(cursor.fetchall())
+
+cursor.execute("SELECT * FROM 'ips' WHERE asn = 144")
+print(cursor.fetchall())
