@@ -15,3 +15,6 @@ print(cursor.fetchall())
 
 cursor.execute("SELECT * FROM 'ips' WHERE asn = 144")
 print(cursor.fetchall())
+
+cursor.execute("SELECT * FROM 'ips' WHERE asn = 144 AND domain LIKE '%sa'")
+print(cursor.fetchall())

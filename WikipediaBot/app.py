@@ -3,7 +3,11 @@ import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
-long_sent = "Originally, vegetables were collected from the wild by hunter-gatherers. Vegetables are all plants. Vegetables can be eaten either raw or cooked."
+import wikipedia
+
+
+q1 = "vegetables" #bad practice
+long_sent = wikipedia.page(q1).content
 lemmatizer = WordNetLemmatizer()
 question = "what are vegetables?"
 def sent_lemmati(sent):
@@ -38,11 +42,16 @@ def process(text, question):
         return (sentence_tokens[index])
 
 while True:
-    question = input("What knowledge can I impart on you today? Press N for exiting ")
-    if question  == "N":
+    q1 = input("What topic do you want to learn on today?")
+    if q1 == " ":
+        print("Exiting")
         break
-    op = process(long_sent, question)
-    if op:
-        print(op)
-    else:
-        print("Check your input again")
+    else: 
+        question = input(f"What knowledge can I impart on {q1} today? Press N for exiting ")
+        if question  == "N":
+            break
+        op = process(long_sent, question)
+        if op:
+            print(op)
+        else:
+            print("Check your input again")
