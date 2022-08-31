@@ -1,4 +1,5 @@
 from selenium import webdriver
+import time 
 
 def get_driver():
     
@@ -22,4 +23,16 @@ def main():
     elem = driver.find_element(by="xpath", value='/html/body/div[1]/div[2]/div[9]/div[6]/div[4]/div[9]/div[1]/div[1]/span/span[2]/span[2]')
     return elem.text
 
-print(main())
+raw_price = main()
+price = cleanText(raw_price)
+prices = [price]
+
+while True:
+    time.sleep(5)
+    raw_price = main()
+    price = cleanText(price)
+    prices.append(price)
+    print(prices)
+    if prices [-1] < prices[-2]:
+        print(prices)
+        del prices[-2]
