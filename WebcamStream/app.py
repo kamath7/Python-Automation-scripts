@@ -4,10 +4,11 @@ from flask import Flask, render_template, Response
 video = cv2.VideoCapture(0)
 
 def get_frame():
-    success, frame = video.read()
-    sc, encoded_image = cv2.imencode('.jpg', frame)
-    frame = encoded_image.tobytes()
-    yield(b'--frame\r\nContent-Type: image/jpeg\r\n'+frame+b'\r\n')
+    while True:
+        success, frame = video.read()
+        sc, encoded_image = cv2.imencode('.jpg', frame)
+        frame = encoded_image.tobytes()
+        yield(b'--frame\r\nContent-Type: image/jpeg\r\n'+frame+b'\r\n')
 
 
 app = Flask(__name__)
@@ -16,3 +17,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route("/vide_feed-Url")
+def video_feed():
+    return Response(get_frame(), mimetype="multipart/x-mixed-replace; boundary=frame")
+
+if __name__ == "__main__":
+    app.run(debug=True)
