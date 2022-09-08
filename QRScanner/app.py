@@ -1,7 +1,26 @@
 import cv2 
+import webbrowser
 
-img = cv2.imread("qr.png")
+video = cv2.VideoCapture(1)
+success, frame = video.read()
 detector = cv2.QRCodeDetector()
 
-url, coords, pixels = detector.detectAndDecode(img)
-print(url, coords, pixels)
+
+while success:
+    url, coords, pixels = detector.detectAndDecode(frame)
+    print(f"Opening {url}")
+
+    webbrowser.open(url)
+    cv2.imshow('frame',frame)
+
+    if cv2.waitKey(1) == ord('q'):
+        break
+    success, frame = video.read()
+
+video.release()
+cv2.destroyAllWindows()
+# img = cv2.imread("qr.png")
+
+
+
+# print(url, coords, pixels)
