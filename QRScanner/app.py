@@ -8,9 +8,12 @@ detector = cv2.QRCodeDetector()
 
 while success:
     url, coords, pixels = detector.detectAndDecode(frame)
-    print(f"Opening {url}")
-
-    webbrowser.open(url)
+    
+    if url:
+        print(f"Opening {url}")
+        webbrowser.open(url)
+        break
+    
     cv2.imshow('frame',frame)
 
     if cv2.waitKey(1) == ord('q'):
